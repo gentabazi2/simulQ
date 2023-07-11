@@ -1,0 +1,26 @@
+.side-nav-btn{
+    height: 4vh;
+    width:70%;
+    border:none;
+    border-radius: 10px;
+    background-color: #02577a;
+    color: white;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover{
+        background-color: white;
+        color:#02577a;
+        border: 1px solid #02577a;
+    }
+}
+
+.back{
+    border: 1px solid #02577a;
+    background-color: white;
+    color: #02577a;
+    &:hover{
+        background-color: #02577a;
+        color:white;
+        border: none;
+    }
+}

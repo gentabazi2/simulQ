@@ -5,6 +5,13 @@ import * as controller from '../controllers/auth.controller';
 import auth from '../middlewares/auth';
 const router = Router();
 
+
+router.get(
+  '/check',
+  auth(),
+  controller.check
+);
+
 router.post(
   '/login',
   body('email', 'Valid email is required').isEmail().notEmpty(),
@@ -54,4 +61,9 @@ router.post(
   // checkValidation,
   controller.resetPassword
 );
+
+router.post(
+  '/logout',
+  controller.logOut
+)
 export default router;

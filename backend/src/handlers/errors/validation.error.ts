@@ -9,12 +9,12 @@ export class RequestValidationError extends CustomError {
   }
 
   serializeErrors() {
-    let errObj: any = {};
+    let errObj: any = "";
 
     this.errors.forEach((error) => {
-      errObj[error.param] = error.msg;
+      errObj = error.msg;
     });
 
-    return { fields: errObj };
+    return  errObj ;
   }
 }

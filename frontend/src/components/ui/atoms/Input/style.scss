@@ -1,0 +1,35 @@
+.input-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    p{
+        width: 50%;
+        text-align: left;
+    }
+    input{
+        width: 50%;
+    }
+    input[type=text], input[type=password]{
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        padding-left: 10px;
+        border:1px solid #02577a;
+    }
+    input[type=submit]{
+        border: none;
+        border-radius: 10px;
+        height: 30px;
+        width: 20%;
+        background-color: #02577a;
+        color: white;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover{
+        background-color: white;
+        color:#02577a;
+        border: 1px solid #02577a;
+        }
+    }
+}

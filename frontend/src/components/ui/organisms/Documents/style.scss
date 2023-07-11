@@ -1,0 +1,14 @@
+.documents-wrapper{
+    width: 100%;
+    min-height: 95vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    .document-content-wrapper{
+        margin-top: 5vh;
+        width: 70%;
+        height: auto;
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+}

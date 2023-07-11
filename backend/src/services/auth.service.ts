@@ -4,6 +4,7 @@ import jwt from 'jwt-then';
 import { FieldError } from '../handlers/errors/fieldError.error';
 import { IUser } from '../models/user';
 import { sha256 } from 'js-sha256';
+import { NextFunction } from 'express';
 
 
 const User = mongoose.model<IUser>('User');
@@ -69,7 +70,7 @@ export const register = async (payload: any) => {
   const { full_name, email, password } = payload;
 
   const isUser = await User.findOne({ email });
-  if (isUser) throw new FieldError({ email: 'Email already registered' });
+  if (isUser) throw new FieldError('Email already registered');
 
   const newUser = new User({
     email,

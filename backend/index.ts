@@ -20,7 +20,8 @@ mongoose.connection.once('open', () => {
 
   import './src/loaders/models';
   import app from './src/app';
-  
+  import ws from "./src/ws";
+    
   const server = http.createServer(app);
 
   const io = socketIo(server,  {
@@ -29,27 +30,8 @@ mongoose.connection.once('open', () => {
       methods: ["GET", "POST"]
     }
   });
-
-
-  const getApiAndEmit = (socket:any) => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-  };
-
-  io.on("connection", (socket:any) => {
-    console.log(`⚡: ${socket.id} user just connected!`);
-   
-    socket.on('message', (data:any) => {
-      console.log("data", data.text);
-      io.emit('messageResponse', data);
-    });
-
-    socket.on("disconnect", () => {
-      console.log('🔥: A user disconnected');
-    });
-  });
-
+  ws(io);
+ 
   server.listen(config.PORT || 80, () => {
     console.log('Server Listening on: ' + config.PORT);
   });

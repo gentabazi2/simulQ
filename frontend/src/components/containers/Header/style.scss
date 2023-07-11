@@ -1,0 +1,81 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    width:100vw;
+    border: 0;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid #02577a;
+    position: fixed;
+    .header-section{
+        width: 33.3%;
+    }
+    .main-navigator{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 100%;
+        
+        a{
+            text-decoration: none;
+            color: #01303f;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+        .header-item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-decoration: unset;
+            transition: .3s all;
+            color:#02577a;
+            &:hover{
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                background-color: #02577a;
+                color:white;
+                transition: .3s all;
+            }
+        }
+        .active{            
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: #02577a;
+            color:white;
+            transition: .3s all;
+        }
+    }
+    .header-heading{
+        font: 500;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 30px;
+
+    }
+    .account-buttons{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        button{
+            margin-right: 20px;
+            height: 4vh;
+            width:100px;
+            border:none;
+            border-radius: 10px;
+            background-color: #02577a;
+            color: white;
+            cursor: pointer;
+            transition: all .3s;
+            &:hover{
+                background-color: white;
+                color:#02577a;
+                border: 1px solid #02577a;
+            }
+        }
+    }
+}
+

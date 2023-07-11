@@ -5,11 +5,13 @@ export class FieldError extends CustomError {
   errObj: any;
 
   serializeErrors() {
-    return { fields: this.errObj };
+    console.log("error", this.errObj);
+    return  this.errObj ;
   }
 
   constructor(err: any) {
     super(err);
     this.errObj = err;
+    console.log("error", this.errObj);
   }
 }
