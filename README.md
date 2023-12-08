@@ -15,25 +15,25 @@ SimulQ is an advanced real-time collaborative editing platform, embodying extens
 
 SimulQ's development process involved rigorous research and practical application, covering the following key areas:
 
-### 4.1 Secure User Authentication
+### Secure User Authentication
 - **JSON Web Tokens (JWT):** For secure claim representation between parties.
 - **HTTP-Only Cookies:** Enhancing security against cross-site scripting attacks.
 
-### 4.2 Real-time Communication with Socket.IO
+### Real-time Communication with Socket.IO
 - **WebSocket Protocol:** Establishing a persistent two-way communication channel.
 - **HTTP Protocol Integration:** Managing one-way communication requests efficiently.
 
-### 4.3 Frontend Development with React
+### Frontend Development with React
 - **React Hooks:** Simplifying state management and lifecycle features in functional components.
 - **Axios Integration:** For performing efficient HTTP requests.
 
-### 4.4 High-Performance Caching with Redis
+### High-Performance Caching with Redis
 - **Efficient Data Storage:** Utilizing key-value data structures for rapid data retrieval and reduced database load.
 
-### 4.5 Middleware Configuration with Express.js
+### Middleware Configuration with Express.js
 - **Extensive Middleware Support:** Facilitating request handling, authentication, error handling, and more.
 
-### 4.6 Backend Development with TypeScript
+### Backend Development with TypeScript
 - **Enhanced Code Quality:** Introducing static typing to JavaScript, improving code reliability and maintenance.
 - **Mongoose Schemas:** Demonstrating efficient MongoDB integration with Mongoose library.
 
