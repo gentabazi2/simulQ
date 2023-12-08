@@ -5,6 +5,8 @@
 
 SimulQ is an advanced real-time collaborative editing platform, embodying extensive research into real-time document editing systems. This platform empowers users to collaboratively edit and interact with documents in real-time, enhancing productivity in individual and team settings.
 
+Its purpose is to serve as a reference project on how a real-time collaborative editing system should be developed. This will help many others that want to start building something of their own in this way.
+
 ## Key Features
 
 - **Real-time Document Editing:** Facilitates simultaneous document editing and collaboration among multiple users.
