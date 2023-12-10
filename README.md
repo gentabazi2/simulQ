@@ -13,6 +13,15 @@ Its purpose is to serve as a reference project on how a real-time collaborative 
 - **Cutting-edge Technologies:** Built with modern web development technologies and methodologies for optimal performance.
 - **Scalable and Efficient:** Engineered to be intuitive, efficient, and scalable, accommodating a growing user base.
 
+- **Authentication:** Via JWT, back to front with httpOnly Cookies, express middleware for verification. Normal Register and Login
+- **Documents:** Rich text editor used: Quill.
+            - ***Create:***
+            - ***Edit:***
+            - ***Add collaborators:*** Add collaborators via email.
+            - ***Online indicators:*** Indicators for when collaborators are online.
+            - ***Real-time editing:*** With the help of socket.io and quilljs-delta to break down the changes and sync every participant in the document together.
+            - ***Persistance and document life:*** Documents are stored in a mongoDb collection, but not every change directly goes in the database. To reduce the database communication, the usage of redis was necessary and it helped to optimize the solution in a beautiful manner (See for your self).
+
 ## Methodology
 
 SimulQ's development process involved rigorous research and practical application, covering the following key areas:
