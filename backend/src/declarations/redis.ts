@@ -4,10 +4,14 @@ const client = redis.createClient({
   port: 6379,
 });
 
-(async()=>{
-    client.connect().then(()=> {
-        console.log('redis is connected')
-      })
+(async () => {
+  try {
+    client.connect().then(() => {
+      console.log("redis is connected");
+    });
+  } catch (e) {
+    console.log("error caught", e);
+  }
 })();
 
 module.exports = client;

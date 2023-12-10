@@ -32,6 +32,7 @@ const checkValidation_1 = __importDefault(require("../handlers/checkValidation")
 const controller = __importStar(require("../controllers/auth.controller"));
 const auth_1 = __importDefault(require("../middlewares/auth"));
 const router = (0, express_1.Router)();
+router.get('/check', (0, auth_1.default)(), controller.check);
 router.post('/login', (0, express_validator_1.body)('email', 'Valid email is required').isEmail().notEmpty(), (0, express_validator_1.body)('password', 'Password must be atleast 8 character')
     .notEmpty()
     .isLength({ min: 8 }), checkValidation_1.default, controller.login);
@@ -51,4 +52,6 @@ router.post('/reset_password', (0, express_validator_1.body)('resetCode', 'Enter
     .isLength({ min: 8 }), 
 // checkValidation,
 controller.resetPassword);
+router.post('/logout', controller.logOut);
 exports.default = router;
+//# sourceMappingURL=auth.routes.js.map

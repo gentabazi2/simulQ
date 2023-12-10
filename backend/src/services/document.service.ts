@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import config from "../configs/index";
 import { FieldError } from "../handlers/errors/fieldError.error";
+import { CustomError } from "../handlers/errors/custom.error";
 import user, { IUser } from "../models/user";
 import document, { IDocument } from "../models/document";
 const User = mongoose.model<IUser>("User");

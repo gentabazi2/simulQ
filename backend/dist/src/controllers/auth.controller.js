@@ -22,64 +22,97 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changePassword = exports.register = exports.resetPassword = exports.sendResetCode = exports.login = void 0;
+exports.changePassword = exports.register = exports.resetPassword = exports.logOut = exports.sendResetCode = exports.login = exports.check = void 0;
 const service = __importStar(require("../services/auth.service"));
-const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password } = req.body;
-    const response = yield service.login({
-        email: email === null || email === void 0 ? void 0 : email.toLowerCase(),
-        password,
-    });
-    res.json(response);
-});
+const check = async (req, res, next) => {
+    try {
+        res.json({ checked: true });
+    }
+    catch (error) {
+        next(error);
+    }
+};
+exports.check = check;
+const login = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        const response = await service.login({
+            email: email === null || email === void 0 ? void 0 : email.toLowerCase(),
+            password,
+        });
+        res.cookie("x-access-token", response.access_token, { httpOnly: true });
+        res.cookie("x-refresh-token", response.refresh_token, { httpOnly: true });
+        res.json(response);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 exports.login = login;
-const sendResetCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email } = req.body;
-    const response = yield service.sendResetCode({
-        email,
-    });
-    res.json(response);
-});
+const sendResetCode = async (req, res, next) => {
+    try {
+        const { email } = req.body;
+        const response = await service.sendResetCode({
+            email,
+        });
+        res.json(response);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 exports.sendResetCode = sendResetCode;
-const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { resetCode, email, new_password } = req.body;
-    const response = yield service.resetPassword({
-        resetCode,
-        email,
-        new_password,
-    });
-    res.json(response);
-});
+const logOut = async (req, res, next) => {
+    res.clearCookie("x-access-token");
+    res.status(200).json({ message: "Success" });
+};
+exports.logOut = logOut;
+const resetPassword = async (req, res, next) => {
+    try {
+        const { resetCode, email, new_password } = req.body;
+        const response = await service.resetPassword({
+            resetCode,
+            email,
+            new_password,
+        });
+        res.json(response);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 exports.resetPassword = resetPassword;
-const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const register = async (req, res, next) => {
     const { full_name, email, password, country } = req.body;
-    const response = yield service.register({
-        full_name,
-        email: email === null || email === void 0 ? void 0 : email.toLowerCase(),
-        password,
-        country,
-    });
-    res.json(response);
-});
+    try {
+        const response = await service.register({
+            full_name,
+            email: email === null || email === void 0 ? void 0 : email.toLowerCase(),
+            password,
+            country,
+        });
+        res.json(response);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 exports.register = register;
-const changePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { old_password, new_password } = req.body;
-    const { _id } = req.payload;
-    const response = yield service.changePassword({
-        user_id: _id,
-        old_password,
-        new_password,
-    });
-    res.json(response);
-});
+const changePassword = async (req, res, next) => {
+    try {
+        const { old_password, new_password } = req.body;
+        const { _id } = req.payload;
+        const response = await service.changePassword({
+            user_id: _id,
+            old_password,
+            new_password,
+        });
+        res.json(response);
+    }
+    catch (error) {
+        next(error);
+    }
+};
 exports.changePassword = changePassword;
+//# sourceMappingURL=auth.controller.js.map

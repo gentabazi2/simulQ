@@ -89,12 +89,13 @@ export const getCollaborators = async (
     const { _id } = req.payload;
     const { document } = req.params;
     const collaborators = await service.getCollaborators(document);
-    // const response = await service.addCollaborator(_id, collab_email, documentId);
     res.json(collaborators);
   } catch (error) {
     next(error);
   }
 };
+
+//TODO : add removeCollaborator.
 
 export const addCollaborator = async (
   req: ModifiedExpressRequest,

@@ -4,7 +4,7 @@ exports.FieldError = void 0;
 const custom_error_1 = require("./custom.error");
 class FieldError extends custom_error_1.CustomError {
     serializeErrors() {
-        return { fields: this.errObj };
+        return this.errObj;
     }
     constructor(err) {
         super(err);
@@ -13,3 +13,4 @@ class FieldError extends custom_error_1.CustomError {
     }
 }
 exports.FieldError = FieldError;
+//# sourceMappingURL=fieldError.error.js.map

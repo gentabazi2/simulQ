@@ -11,3 +11,4 @@ exports.default = (req, _res, next) => {
         next();
     }
 };
+//# sourceMappingURL=checkValidation.js.map

@@ -8,3 +8,4 @@ exports.default = {
     LOGIN_HASH_SALT: process.env.LOGIN_HASH_SALT,
     ENDPOINT_PREFIX: process.env.ENDPOINT_PREFIX,
 };
+//# sourceMappingURL=index.js.map

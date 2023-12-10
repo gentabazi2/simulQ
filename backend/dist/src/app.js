@@ -31,19 +31,24 @@ const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./loaders/routes"));
 const configs_1 = __importDefault(require("./configs"));
 const errorHandler_1 = require("./handlers/errors/errorHandler");
+const method_override_1 = __importDefault(require("method-override"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
-app.use((0, express_1.json)());
-app.use((0, express_1.urlencoded)({ extended: true }));
+app.use((0, express_1.json)({ limit: "25mb" }));
+app.use((0, express_1.urlencoded)({ extended: true, limit: "25mb" }));
 const corsOptions = {
-    origin: '*',
+    origin: "*",
     credentials: true,
     optionSuccessStatus: 200,
 };
 //Allow CORS
 app.use((0, cors_1.default)(corsOptions));
-app.get('/', (req, res) => {
+app.use((0, cookie_parser_1.default)());
+app.get("/", (req, res) => {
     res.send({ response: "I am alive" }).status(200);
 });
 app.use(configs_1.default.ENDPOINT_PREFIX, (0, routes_1.default)());
+app.use((0, method_override_1.default)());
 app.use(errorHandler_1.errorHandler);
 exports.default = app;
+//# sourceMappingURL=app.js.map

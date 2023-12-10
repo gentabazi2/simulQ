@@ -12,3 +12,4 @@ class AuthError extends custom_error_1.CustomError {
     }
 }
 exports.AuthError = AuthError;
+//# sourceMappingURL=auth.error.js.map

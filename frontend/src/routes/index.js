@@ -31,7 +31,7 @@ export default function routes() {
     <Router>
       <Routes>
         {routeHandler(pages)}
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<Navigate to="/documents" replace />} />
       </Routes>
     </Router>
   );

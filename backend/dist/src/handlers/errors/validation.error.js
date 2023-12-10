@@ -9,11 +9,12 @@ class RequestValidationError extends custom_error_1.CustomError {
         this.statusCode = 400;
     }
     serializeErrors() {
-        let errObj = {};
+        let errObj = "";
         this.errors.forEach((error) => {
-            errObj[error.param] = error.msg;
+            errObj = error.msg;
         });
-        return { fields: errObj };
+        return errObj;
     }
 }
 exports.RequestValidationError = RequestValidationError;
+//# sourceMappingURL=validation.error.js.map

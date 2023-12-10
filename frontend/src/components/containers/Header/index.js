@@ -3,6 +3,7 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import useRequest from "../../../helpers/hooks/useRequest";
 import { useNavigate } from "react-router-dom";
+import simulQLogo from "../../../assets/images/rush.png";
 
 const Header = ({ unAuthorized, selected }) => {
   const navigate = useNavigate();
@@ -13,24 +14,16 @@ const Header = ({ unAuthorized, selected }) => {
       navigate("/login");
     }
   };
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="header">
       <div className="header-section company-section">
-        <div className="header-heading">SimulQ</div>
+        <div className="header-heading">
+          <img className="logo" src={simulQLogo} alt="logo" />
+        </div>
       </div>
       {!unAuthorized ? (
         <div className="header-section main-navigator">
-          <Link to="/">
-            <div
-              className={`header-item ${
-                selected && selected === "Home" ? "active" : ""
-              }`}
-            >
-              Home
-            </div>
-          </Link>
           <Link to="/documents">
             <div
               className={`header-item ${
@@ -40,13 +33,13 @@ const Header = ({ unAuthorized, selected }) => {
               Documents
             </div>
           </Link>
-          <Link to="/my-profile">
+          <Link to="/documents/shared">
             <div
               className={`header-item ${
-                selected && selected === "Profile" ? "active" : ""
+                selected && selected === "Shared" ? "active" : ""
               }`}
             >
-              Profile
+              Shared With You
             </div>
           </Link>
         </div>
@@ -68,9 +61,6 @@ const Header = ({ unAuthorized, selected }) => {
           </>
         ) : (
           <>
-            <Link to="/settings">
-              <button>Settings</button>
-            </Link>
             <button
               onClick={() => {
                 sendPost("/v1/auth/logout", { body: null }, resolver);

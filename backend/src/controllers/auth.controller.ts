@@ -1,27 +1,35 @@
-import { NextFunction, Request, Response } from 'express';
-import { ModifiedExpressRequest } from '../declarations/auth';
-import * as service from '../services/auth.service';
+import { NextFunction, Request, Response } from "express";
+import { ModifiedExpressRequest } from "../declarations/auth";
+import * as service from "../services/auth.service";
 
-export const check = async (req: Request, res: Response, next: NextFunction) => {
-  try{
-    
-  }catch(error){
+export const check = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json({ checked: true });
+  } catch (error) {
     next(error);
   }
-}
+};
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
-  try{
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
     const { email, password } = req.body;
     const response = await service.login({
       email: email?.toLowerCase(),
       password,
     });
-    res.cookie("x-access-token",response.access_token, {httpOnly: true});
-    res.cookie("x-refresh-token",response.refresh_token, {httpOnly: true});
+    res.cookie("x-access-token", response.access_token, { httpOnly: true });
+    res.cookie("x-refresh-token", response.refresh_token, { httpOnly: true });
     res.json(response);
-  }catch(error){
-    next(error)
+  } catch (error) {
+    next(error);
   }
 };
 export const sendResetCode = async (
@@ -29,29 +37,32 @@ export const sendResetCode = async (
   res: Response,
   next: NextFunction
 ) => {
-  try{
+  try {
     const { email } = req.body;
     const response = await service.sendResetCode({
       email,
     });
     res.json(response);
-  }catch(error){
-    next(error)
+  } catch (error) {
+    next(error);
   }
 };
 
-export const logOut = async (req: Request, res: Response, next: NextFunction) => {
- 
+export const logOut = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   res.clearCookie("x-access-token");
-  res.status(200).json({message:"Success"})
-}
+  res.status(200).json({ message: "Success" });
+};
 
 export const resetPassword = async (
   req: ModifiedExpressRequest,
   res: Response,
   next: NextFunction
 ) => {
-  try{
+  try {
     const { resetCode, email, new_password } = req.body;
     const response = await service.resetPassword({
       resetCode,
@@ -59,31 +70,35 @@ export const resetPassword = async (
       new_password,
     });
     res.json(response);
-  }catch(error){
+  } catch (error) {
     next(error);
   }
 };
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { full_name, email, password, country } = req.body;
-  try{
-  const response = await service.register({
-    full_name,
-    email: email?.toLowerCase(),
-    password,
-    country,
-  });
-  res.json(response);
-  }catch(error){
+  try {
+    const response = await service.register({
+      full_name,
+      email: email?.toLowerCase(),
+      password,
+      country,
+    });
+    res.json(response);
+  } catch (error) {
     next(error);
   }
 };
 
 export const changePassword = async (
   req: ModifiedExpressRequest,
-  res: Response, 
+  res: Response,
   next: NextFunction
 ) => {
-  try{
+  try {
     const { old_password, new_password } = req.body;
     const { _id } = req.payload;
     const response = await service.changePassword({
@@ -92,7 +107,7 @@ export const changePassword = async (
       new_password,
     });
     res.json(response);
-  }catch(error){
+  } catch (error) {
     next(error);
   }
 };

@@ -7,14 +7,8 @@ import { useNavigate } from "react-router-dom";
 import offlineIcon from "../../../../assets/images/offline.png";
 import onlineIcon from "../../../../assets/images/online.png";
 import { getUserData } from "../../../../helpers/auth/getUserData";
-import { Suspense } from "react";
 
-const SideNavBar = ({
-  documentData,
-  setDocumentData,
-  onlineCollaborators,
-  setOnlineCollaborators,
-}) => {
+const SideNavBar = ({ documentData, setDocumentData, onlineCollaborators }) => {
   const navigator = useNavigate();
   const user = getUserData();
   const [name, setName] = useState("");
@@ -26,7 +20,6 @@ const SideNavBar = ({
   const resolver = (data, error) => {
     if (error) {
     } else {
-
       if (data?.data?.collaborators && data?.data?.owner) {
         setCollaborators(data?.data?.collaborators);
         setOwner(data?.data?.owner);
@@ -49,17 +42,14 @@ const SideNavBar = ({
     setDocumentData({ ...editedDoc });
   };
 
-  useEffect(() => {
-  }, [collaborators]);
-
-  useEffect(() => {
-  }, [onlineCollaborators]);
+  useEffect(() => {}, [onlineCollaborators, collaborators]);
 
   useEffect(() => {
     setName(documentData?.name);
     if (!collaboratorsTaken && documentData) {
       sendGet(`/v1/document/getCollaborators/${documentData?._id}`, resolver);
     }
+    // eslint-disable-next-line
   }, [documentData]);
 
   return (
@@ -108,6 +98,7 @@ const SideNavBar = ({
               </div>
               <div className="collaborator-toolbox">
                 <img
+                  alt=""
                   src={
                     user._id === collaborator._id ||
                     onlineCollaborators?.includes(collaborator._id)
@@ -117,7 +108,7 @@ const SideNavBar = ({
                   width={20}
                   height={20}
                 />
-                <p>REM</p>
+                <p>-</p>
               </div>
             </div>
           ))}

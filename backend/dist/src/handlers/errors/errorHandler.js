@@ -17,16 +17,18 @@ const errorHandler = (err, _req, res, _next) => {
         const errorKeys = Object.keys(err.errors);
         const errs = [];
         errorKeys.forEach((key) => errs.push({ message: err.errors[key].message }));
-        res.status(400).json({
+        res.status(400).send({
             errors: errs,
         });
     }
     else if (err instanceof custom_error_1.CustomError) {
         //Handle Custom Errors
-        res.status(err.statusCode).json(err.serializeErrors());
+        res.status(err.statusCode).send({ error: err.serializeErrors() });
     }
     else {
-        res.status(401).json({ message: (err === null || err === void 0 ? void 0 : err.message) || 'Internal Server Error' });
+        res.status(401).send({ error: (err === null || err === void 0 ? void 0 : err.message) || "Internal Server Error" });
     }
+    _next();
 };
 exports.errorHandler = errorHandler;
+//# sourceMappingURL=errorHandler.js.map

@@ -47,10 +47,10 @@ const GeneralWrapper = ({ children }) => {
         navigate("/login");
       }
     }
-    if (location.pathname.includes("document")) {
+    if (location.pathname.includes("shared")) {
+      setSelected("Shared");
+    } else if (location.pathname.includes("document")) {
       setSelected("Documents");
-    } else if (location.pathname.includes("my-profile")) {
-      setSelected("Profile");
     } else {
       setSelected("Home");
     }

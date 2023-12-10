@@ -12,6 +12,7 @@ import "quill/dist/quill.snow.css";
 import Quill from "quill";
 import { io } from "socket.io-client";
 import useRequest from "../../../../helpers/hooks/useRequest";
+import { SERVER_URL } from "../../../../config/config";
 // import { handleJoinedRoom } from "../../../../socket/events";
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -91,7 +92,7 @@ const Editor = ({ doc, _id, onlineCollaborators, setOnlineCollaborators }) => {
   }, [quillContents]);
 
   useEffect(() => {
-    const s = io("http://192.168.88.224:3001");
+    const s = io(SERVER_URL);
     setSocket(s);
     return () => {
       s.disconnect();

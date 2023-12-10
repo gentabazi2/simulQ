@@ -26,4 +26,6 @@ export const errorHandler = (
   } else {
     res.status(401).send({ error: err?.message || "Internal Server Error" });
   }
+
+  _next();
 };

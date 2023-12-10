@@ -27,10 +27,8 @@ const ws = (io: any) => {
           }
         })
         .catch((error: any) => {});
-      socket.on("leaveRoom", () => {
-      });
+      socket.on("leaveRoom", () => {});
       socket.on("send-changes", (delta: any) => {
-        console.log(delta);
         socket.broadcast.to(roomId).emit("receive-changes", delta);
         client.get(documentId).then((reply: any) => {
           if (reply) {

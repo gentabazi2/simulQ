@@ -20,6 +20,7 @@ mongoose_1.default.connect(index_1.default.DATABASE, {
 });
 require("./src/loaders/models");
 const app_1 = __importDefault(require("./src/app"));
+const ws_1 = __importDefault(require("./src/ws"));
 const server = http_1.default.createServer(app_1.default);
 const io = socketIo(server, {
     cors: {
@@ -27,21 +28,8 @@ const io = socketIo(server, {
         methods: ["GET", "POST"]
     }
 });
-const getApiAndEmit = (socket) => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-};
-io.on("connection", (socket) => {
-    console.log(`⚡: ${socket.id} user just connected!`);
-    socket.on('message', (data) => {
-        console.log("data", data.text);
-        io.emit('messageResponse', data);
-    });
-    socket.on("disconnect", () => {
-        console.log('🔥: A user disconnected');
-    });
-});
+(0, ws_1.default)(io);
 server.listen(index_1.default.PORT || 80, () => {
     console.log('Server Listening on: ' + index_1.default.PORT);
 });
+//# sourceMappingURL=index.js.map
