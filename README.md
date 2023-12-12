@@ -1,3 +1,6 @@
+![image](https://github.com/gentabazi2/simulQ/assets/48065448/b2ae07bd-0e04-406f-b1e6-b011daba98ea)
+
+
 
 # SimulQ: Real-time Collaborative Document Editing System
 
